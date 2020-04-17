@@ -11,17 +11,6 @@ export const query = graphql`
     sampleProject: sanitySampleProject(id: { eq: $id }) {
       id
       publishedAt
-      categories {
-        _id
-        title
-      }
-      relatedProjects {
-        title
-        _id
-        slug {
-          current
-        }
-      }
       mainImage {
         crop {
           _key
@@ -94,7 +83,7 @@ const ProjectTemplate = props => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {project && <Project {...project} />}
+      {project && <ImageAndText {...project} />}
     </Layout>
   )
 };

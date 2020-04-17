@@ -7,7 +7,7 @@ import {
 } from '../lib/helpers';
 import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
-import ProjectPreviewGrid from '../components/project-preview-grid';
+import ProjectPreviewGrid from '../components/imageAndText-preview-grid';
 import SEO from '../components/seo';
 import ImageAndText from '../components/imageAndText';
 import Layout from '../containers/layout';
@@ -90,13 +90,7 @@ const IndexPage = props => {
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
         <ImageAndText />
-        {projectNodes && (
-          <ProjectPreviewGrid
-            title='Latest projects'
-            nodes={projectNodes}
-            browseMoreHref='/archive/'
-          />
-        )}
+        {projectNodes && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </Layout>
   )
