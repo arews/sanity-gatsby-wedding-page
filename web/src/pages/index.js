@@ -1,27 +1,28 @@
-import React from 'react'
-import {graphql} from 'gatsby'
+import React from 'react';
+import {graphql} from 'gatsby';
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
-} from '../lib/helpers'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
-import ProjectPreviewGrid from '../components/project-preview-grid'
-import SEO from '../components/seo'
-import Layout from '../containers/layout'
+} from '../lib/helpers';
+import Container from '../components/container';
+import GraphQLErrorList from '../components/graphql-error-list';
+import ProjectPreviewGrid from '../components/project-preview-grid';
+import SEO from '../components/seo';
+import ImageAndText from '../components/imageAndText';
+import Layout from '../containers/layout';
 
 export const query = graphql`
   query IndexPageQuery {
-    site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
       keywords
     }
     projects: allSanitySampleProject(
       limit: 6
-      sort: {fields: [publishedAt], order: DESC}
-      filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
       edges {
         node {
@@ -88,6 +89,7 @@ const IndexPage = props => {
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
+        <ImageAndText />
         {projectNodes && (
           <ProjectPreviewGrid
             title='Latest projects'
@@ -98,6 +100,6 @@ const IndexPage = props => {
       </Container>
     </Layout>
   )
-}
+};
 
 export default IndexPage

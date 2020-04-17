@@ -1,15 +1,15 @@
-import {format, distanceInWords, differenceInDays} from 'date-fns'
-import React from 'react'
-import {Link} from 'gatsby'
-import {buildImageObj} from '../lib/helpers'
-import {imageUrlFor} from '../lib/image-url'
-import BlockContent from './block-content'
-import Container from './container'
-import RoleList from './role-list'
+import {format, distanceInWords, differenceInDays} from 'date-fns';
+import React from 'react';
+import {Link} from 'gatsby';
+import {buildImageObj} from '../lib/helpers';
+import {imageUrlFor} from '../lib/image-url';
+import BlockContent from './block-content';
+import Container from './container';
+import RoleList from './role-list';
 
-import styles from './project.module.css'
+import styles from './imageAndText.module.css';
 
-function Project (props) {
+function ImageAndText (props) {
   const {_rawBody, title, categories, mainImage, members, publishedAt, relatedProjects} = props
   return (
     <article className={styles.root}>
@@ -73,4 +73,4 @@ function Project (props) {
   )
 }
 
-export default Project
+export default ImageAndText
