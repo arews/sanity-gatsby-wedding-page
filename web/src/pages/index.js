@@ -9,7 +9,6 @@ import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/imageAndText-preview-grid";
 import SEO from "../components/seo";
-import ImageAndText from "../components/imageAndText";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -96,7 +95,9 @@ const IndexPage = props => {
       <Container>
         <h1 hidden>Maria Jones and Are Sandviks wedding page{site.title}</h1>
         <div style={h1Style}>
-          <h1>Hold av datoen: 4. september 2021</h1>
+          <h1>
+            <a href="https://www.trevarefabrikken.no">Trevarefabrikken</a>, 4. september 2021
+          </h1>
         </div>
         {projectNodes && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
