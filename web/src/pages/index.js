@@ -1,16 +1,16 @@
-import React from 'react';
-import {graphql} from 'gatsby';
+import React from "react";
+import { graphql } from "gatsby";
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
-} from '../lib/helpers';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
-import ProjectPreviewGrid from '../components/imageAndText-preview-grid';
-import SEO from '../components/seo';
-import ImageAndText from '../components/imageAndText';
-import Layout from '../containers/layout';
+} from "../lib/helpers";
+import Container from "../components/container";
+import GraphQLErrorList from "../components/graphql-error-list";
+import ProjectPreviewGrid from "../components/imageAndText-preview-grid";
+import SEO from "../components/seo";
+import ImageAndText from "../components/imageAndText";
+import Layout from "../containers/layout";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -58,42 +58,50 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const IndexPage = props => {
-  const {data, errors} = props
+  const { data, errors } = props;
 
   if (errors) {
     return (
       <Layout>
         <GraphQLErrorList errors={errors} />
       </Layout>
-    )
+    );
   }
 
-  const site = (data || {}).site
+  const site = (data || {}).site;
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterOutDocsPublishedInTheFuture)
-    : []
+        .filter(filterOutDocsWithoutSlugs)
+        .filter(filterOutDocsPublishedInTheFuture)
+    : [];
 
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    )
+    );
   }
+
+  const h1Style = {
+    display: "flex",
+    justifyContent: "center",
+    margin: "150px"
+  };
 
   return (
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
-        <ImageAndText />
+        <h1 hidden>Maria Jones and Are Sandviks wedding page{site.title}</h1>
+        <div style={h1Style}>
+          <h1>Hold av datoen: 4. september 2021</h1>
+        </div>
         {projectNodes && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </Layout>
-  )
+  );
 };
 
-export default IndexPage
+export default IndexPage;
