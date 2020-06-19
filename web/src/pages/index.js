@@ -89,6 +89,10 @@ const IndexPage = props => {
     margin: "150px"
   };
 
+  const linkStyle = {
+    color: "black"
+  };
+
   return (
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
@@ -96,7 +100,10 @@ const IndexPage = props => {
         <h1 hidden>Maria Jones and Are Sandviks wedding page{site.title}</h1>
         <div style={h1Style}>
           <h1>
-            <a href="https://www.trevarefabrikken.no">Trevarefabrikken</a>, 4. september 2021
+            <a href="https://www.trevarefabrikken.no" style={linkStyle}>
+              Trevarefabrikken
+            </a>
+            , 4. september 2021
           </h1>
         </div>
         {projectNodes && <ProjectPreviewGrid nodes={projectNodes} />}
