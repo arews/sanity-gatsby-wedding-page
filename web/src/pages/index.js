@@ -1,15 +1,15 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react'
+import {graphql} from 'gatsby'
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
-} from "../lib/helpers";
-import Container from "../components/container";
-import GraphQLErrorList from "../components/graphql-error-list";
-import ProjectPreviewGrid from "../components/imageAndText-preview-grid";
-import SEO from "../components/seo";
-import Layout from "../containers/layout";
+} from '../lib/helpers'
+import Container from '../components/container'
+import GraphQLErrorList from '../components/graphql-error-list'
+import ProjectPreviewGrid from '../components/imageAndText-preview-grid'
+import SEO from '../components/seo'
+import Layout from '../containers/layout'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -57,41 +57,41 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
 const IndexPage = props => {
-  const { data, errors } = props;
+  const {data, errors} = props
 
   if (errors) {
     return (
       <Layout>
         <GraphQLErrorList errors={errors} />
       </Layout>
-    );
+    )
   }
 
-  const site = (data || {}).site;
+  const site = (data || {}).site
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
-    : [];
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterOutDocsPublishedInTheFuture)
+    : []
 
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    );
+    )
   }
 
   const h1Style = {
-    display: "flex",
-    justifyContent: "center",
-    margin: "150px"
-  };
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '150px'
+  }
 
   const linkStyle = {
-    color: "black"
-  };
+    color: 'black'
+  }
 
   return (
     <Layout>
@@ -100,8 +100,8 @@ const IndexPage = props => {
         <h1 hidden>Maria Jones and Are Sandviks wedding page{site.title}</h1>
         <div style={h1Style}>
           <h1>
-            <a href="https://www.trevarefabrikken.no" style={linkStyle}>
-              Trevarefabrikken
+            <a href='https://www.trevarefabrikken.no' style={linkStyle}>
+              Trevarefabrikken i Henningsvær
             </a>
             , 4. september 2021
           </h1>
@@ -109,7 +109,7 @@ const IndexPage = props => {
         {projectNodes && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </Layout>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
