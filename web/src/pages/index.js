@@ -86,7 +86,7 @@ const IndexPage = props => {
   const h1Style = {
     display: "flex",
     justifyContent: "center",
-    padding: "50px"
+    padding: "80px 0px 80px 0px"
   };
 
   const linkStyle = {
